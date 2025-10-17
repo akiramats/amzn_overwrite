@@ -1,0 +1,41 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# --- Virtualenv ---
+.venv/
+venv/
+ENV/
+
+# --- Local configs & secrets ---
+.env
+.env.*
+*.local
+*.pem
+*.key
+
+# --- IDE/Editor junk ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS junk ---
+.DS_Store
+
+# --- Data / logs / notebooks (optional) ---
+logs/
+*.log
+*.sqlite
+*.db
+*.ipynb_checkpoints/
+
+# --- IB artifacts (examples; keep these out) ---
+*.csv
+*.tsv
+*.parquet
+tws.log*
+ibgateway.log*
