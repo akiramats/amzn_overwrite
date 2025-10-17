@@ -1,0 +1,77 @@
+strategy_name: "Aggressive_Income_AMZN"
+
+assets:
+  ticker: "AMZN"
+  shares_held: 400
+  contracts_per_cycle: 4
+
+objectives:
+  annualized_return_target: 0.20
+  dynamic_delta: true
+  base_target_delta: 0.20
+  delta_table:
+    - { realized_vol_gt: 60, target_delta: 0.15 }
+    - { realized_vol_gt: 40, target_delta: 0.18 }
+    - { realized_vol_gt: 0,  target_delta: 0.22 }
+
+tenor:
+  min_dte: 7
+  max_dte: 14
+  laddering: true
+
+earnings_policy:
+  skip_pre_earnings: false
+  write_far_otm: true
+  pre_earnings_max_delta: 0.10
+  pre_earnings_min_otm_pct: 8
+
+filters:
+  min_open_interest: 500
+  min_volume: 100
+  max_spread_pct: 0.10
+  max_intraday_move_pause_pct: 5
+
+entry_rules:
+  price_ref: "mid"
+  limit_offset_ticks: -1
+  auto_cross_spread_threshold: 0.05
+  slice_contracts: [2, 1, 1]
+  trade_window: { start: "09:40", end: "15:45" }
+  retry_timeout_sec: 30
+  max_slippage_pct: 0.005
+
+management:
+  take_profit_trigger: 0.25
+  min_dte_remaining_for_tp: 0.5
+  roll_trigger_delta: 0.55
+  mandatory_roll_delta: 0.60
+  mandatory_roll_min_dte: 5
+  pin_risk_threshold_pct: 1.0
+  stop_loss_multiple: 2.5
+  max_roll_cost_pct: 0.30
+  roll_step_otm_usd: 5
+  roll_extend_days: 7
+
+risk_limits:
+  contracts_leverage: 1.0
+  portfolio_exposure_cap_pct: 20
+  max_management_spend_pct: 30
+  kill_switch_error_threshold: 3
+  rolling_drawdown_limit_pct: 2
+
+tax_lot_management:
+  jurisdiction: "UK"
+  avoid_assignment: true
+  rebuy_on_assignment: true
+  lot_method: "specific_id"
+  log_table: "lot_registry"
+  track_premium_realization: true
+
+alerts:
+  channels: ["log"]
+  triggers: ["delta_exceeds_0.6","premium_hit_take_profit","assignment_risk","api_error","drawdown_limit"]
+
+backtest:
+  lookback_years: 3
+  data_vendor: "polygon"
+  evaluate_metrics: ["annualized_yield","assignment_rate","premium_capture","roll_yield","sharpe"]
