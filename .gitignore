@@ -17,7 +17,7 @@ ENV/
 *.pem
 *.key
 
-# --- IDE/Editor junk ---
+# --- IDE / Editor junk ---
 .vscode/
 .idea/
 *.swp
@@ -26,32 +26,22 @@ ENV/
 # --- OS junk ---
 .DS_Store
 
-# --- Data / logs / notebooks (optional) ---
+# --- Data / logs / notebooks ---
 logs/
 *.log
 *.sqlite
 *.db
 *.ipynb_checkpoints/
+data/
 
-# --- IB artifacts (examples; keep these out) ---
+# --- IB artifacts ---
 *.csv
 *.tsv
 *.parquet
 tws.log*
 ibgateway.log*
-.venv/
-__pycache__/
-*.pyc
-.env
-*.log
-logs/
-.DS_Store
-.ipynb_checkpoints/
-data/
-*.sqlite
-*.db
-*.parquet
-*.csv
+
+# --- Node / Web build outputs ---
 node_modules/
 dist/
 build/
